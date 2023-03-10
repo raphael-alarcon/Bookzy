@@ -1,0 +1,54 @@
+@use './variables' as v;
+
+.loader {
+    display: grid;
+    place-items: center;
+}
+
+.loader__content {
+    width: 20%;
+    display: grid;
+    place-items: center;
+    gap: 0.5rem;
+    color: rgba(0,0,0,0.4);
+    font-weight: 200;
+}
+
+.loader__content__spinner {
+    width: 100%;
+    height: v.$height-of-loader;
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.2);
+    position: relative;
+   }
+   
+   .loader__content__spinner::before {
+    content: "";
+    position: absolute;
+    background: v.$loader-color;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    border-radius: 30px;
+    animation: moving 1.5s cubic-bezier(0.7, 0, 0, 0.7) infinite;
+    ;
+   }
+   
+   @keyframes moving {
+    50% {
+     width: 100%;
+    }
+   
+    100% {
+     width: 0;
+     right: 0;
+     left: unset;
+    }
+   }
+
+.loader.finished {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: -1;
+}
